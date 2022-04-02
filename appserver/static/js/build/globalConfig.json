@@ -1,0 +1,429 @@
+{
+    "meta": {
+        "name": "TA-sfdc-streaming-api",
+        "displayName": "sfdc-streaming-api",
+        "version": "1.0.0",
+        "apiVersion": "3.0.0",
+        "restRoot": "TA_sfdc_streaming_api"
+    },
+    "pages": {
+        "configuration": {
+            "title": "Configuration",
+            "description": "Set up your add-on",
+            "tabs": [
+                {
+                    "name": "account",
+                    "title": "Connection",
+                    "table": {
+                        "header": [
+                            {
+                                "field": "name",
+                                "label": "Connection"
+                            },
+                            {
+                                "field": "username",
+                                "label": "Username"
+                            },
+                            {
+                                "field": "client_id",
+                                "label": "Consumer Key"
+                            },
+                            {
+                                "field": "sandbox",
+                                "label": "Sandbox"
+                            }
+                        ],
+                        "moreInfo": [
+                            {
+                                "field": "name",
+                                "label": "Connection"
+                            },
+                            {
+                                "field": "domain",
+                                "label": "URL"
+                            },
+                            {
+                                "field": "client_id",
+                                "label": "Consumer Key"
+                            },
+                            {
+                                "field": "client_secret",
+                                "label": "Consumer Secret"
+                            },
+                            {
+                                "field": "username",
+                                "label": "Username"
+                            },
+                            {
+                                "field": "password",
+                                "label": "Password"
+                            },
+                            {
+                                "field": "sandbox",
+                                "label": "Sandbox"
+                            }
+                        ],
+                        "actions": [
+                            "edit",
+                            "delete",
+                            "clone"
+                        ]
+                    },
+                    "entity": [
+                          {
+                            "field": "name",
+                            "label": "Connection",
+                            "type": "text",
+                            "required": true,
+                            "help": "Enter a unique name for this connection.",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ]
+                          },
+                        {
+                            "field": "domain",
+                            "label": "URL",
+                            "type": "text",
+                            "help": "Only HTTPS connections are allowed",
+                            "required": true,
+                            "defaultValue": "https://login.salesforce.com/services/oauth2/token",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "https://login.salesforce.com/services/oauth2/token"
+                            }
+                        },
+                        {
+                            "field": "client_id",
+                            "label": "Consumer Key",
+                            "type": "text",
+                            "help": "",
+                            "required": true,
+                            "defaultValue": "",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "oauth consumer key"
+                            }
+                        },
+                        {
+                            "field": "client_secret",
+                            "label": "Consumer Secret",
+                            "type": "text",
+                            "help": "",
+                            "required": true,
+                            "defaultValue": "",
+                            "encrypted": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of password is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "oauth consumer secret"
+                            }
+                        },
+                        {
+                            "field": "username",
+                            "label": "Username",
+                            "type": "text",
+                            "help": "",
+                            "required": true,
+                            "defaultValue": "",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "username"
+                            }
+                        },
+                        {
+                            "field": "password",
+                            "label": "Password",
+                            "type": "text",
+                            "help": "",
+                            "required": true,
+                            "defaultValue": "",
+                            "encrypted": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of password is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "password"
+                            }
+                        },
+                        {
+                            "field": "sandbox",
+                            "label": "Sandbox",
+                            "type": "checkbox",
+                            "help": "",
+                            "required": false,
+                            "defaultValue": false
+                        }
+                    ]
+                },
+                {
+                    "name": "logging",
+                    "title": "Logging",
+                    "entity": [
+                        {
+                            "field": "loglevel",
+                            "label": "Log level",
+                            "type": "singleSelect",
+                            "options": {
+                                "disableSearch": true,
+                                "autoCompleteFields": [
+                                    {
+                                        "label": "DEBUG",
+                                        "value": "DEBUG"
+                                    },
+                                    {
+                                        "label": "INFO",
+                                        "value": "INFO"
+                                    },
+                                    {
+                                        "label": "WARNING",
+                                        "value": "WARNING"
+                                    },
+                                    {
+                                        "label": "ERROR",
+                                        "value": "ERROR"
+                                    },
+                                    {
+                                        "label": "CRITICAL",
+                                        "value": "CRITICAL"
+                                    }
+                                ]
+                            },
+                            "defaultValue": "INFO"
+                        }
+                    ]
+                }
+            ]
+        },
+        "inputs": {
+            "title": "Inputs",
+            "description": "Manage your data inputs",
+            "table": {
+                "header": [
+                    {
+                        "field": "name",
+                        "label": "Name"
+                    },
+                    {
+                        "field": "global_account",
+                        "label": "Connection"
+                    },
+                    {
+                        "field": "topic",
+                        "label": "Topic"
+                    },
+                    {
+                        "field": "index",
+                        "label": "Index"
+                    },
+                    {
+                        "field": "sourcetype",
+                        "label": "Source Type"
+                    },
+                    {
+                        "field": "disabled",
+                        "label": "Status"
+                    }
+                ],
+                "moreInfo": [
+                    {
+                        "field": "name",
+                        "label": "Name"
+                    },
+                    {
+                        "field": "global_account",
+                        "label": "Connection"
+                    },
+                    {
+                        "field": "interval",
+                        "label": "Interval"
+                    },
+                    {
+                        "field": "index",
+                        "label": "Index"
+                    },
+                    {
+                        "field": "disabled",
+                        "label": "Status"
+                    },
+                    {
+                        "field": "topic",
+                        "label": "Topic"
+                    },
+                    {
+                        "field": "position",
+                        "label": "LATEST"
+                    }
+                ],
+                "actions": [
+                    "edit",
+                    "enable",
+                    "delete",
+                    "clone"
+                ]
+            },
+            "services": [
+                {
+                    "name": "sfdc_streaming_api_events",
+                    "title": "sfdc-streaming-api-events",
+                    "entity": [
+                        {
+                            "field": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "help": "Enter a unique name for the data input",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "pattern": "^[a-zA-Z]\\w*$",
+                                    "errorMsg": "Input Name must start with a letter and followed by alphabetic letters, digits or underscores."
+                                },
+                                {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 100,
+                                    "errorMsg": "Length of input name should be between 1 and 100"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "global_account",
+                            "label": "Connection",
+                            "type": "singleSelect",
+                            "help": "Go to Configuration -> Connection to add a connection",
+                            "required": true,
+                            "options": {
+                                "referenceName": "account"
+                            }
+                        },
+                        {
+                            "field": "interval",
+                            "label": "Interval",
+                            "type": "text",
+                            "required": true,
+                            "help": "Time interval of input in seconds.",
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "pattern": "^\\-[1-9]\\d*$|^\\d*$",
+                                    "errorMsg": "Interval must be an integer."
+                                }
+                            ]
+                        },
+                        {
+                            "field": "index",
+                            "label": "Index",
+                            "type": "singleSelect",
+                            "defaultValue": "default",
+                            "options": {
+                                "endpointUrl": "data/indexes",
+                                "blackList": "^_.*$",
+                                "createSearchChoice": true
+                            },
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 80,
+                                    "errorMsg": "Length of index name should be between 1 and 80."
+                                }
+                            ]
+                        },
+                        {
+                            "field": "sourcetype",
+                            "label": "Source Type",
+                            "type": "singleSelect",
+                            "defaultValue": "sfdc-streaming-api-events",
+                            "required": true,
+                            "options": {
+                                "createSearchChoice": true,
+                                "autoCompleteFields": [
+                                    {
+                                        "label": "sfdc-streaming-api-events",
+                                        "value": "sfdc-streaming-api-events"
+                                    },
+                                    {
+                                        "label": "sfdc-streaming-api-events:login",
+                                        "value": "sfdc-streaming-api-events:login"
+                                    },
+                                    {
+                                        "label": "sfdc-streaming-api-events:report",
+                                        "value": "sfdc-streaming-api-events:report"
+                                    },
+                                    {
+                                        "label": "sfdc-streaming-api-events:security",
+                                        "value": "sfdc-streaming-api-events:security"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "field": "topic",
+                            "label": "Topic",
+                            "help": "",
+                            "required": true,
+                            "type": "text",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "subscription topic"
+                            }
+                        },
+                        {
+                            "field": "position",
+                            "label": "LATEST",
+                            "help": "LATEST indicates replay of new events that are broadcast after the client subscribes. Uncheck to receive all events, including past events that are within the 24-hour",
+                            "required": false,
+                            "type": "checkbox",
+                            "defaultValue": true
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
